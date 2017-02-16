@@ -5,23 +5,7 @@
 # Authors: amandine gasc: amandine.gasc@gmail.com
 
 
-
-# spec<-matriceMoinsBruit_prop[,1]
-# f=44100
-# nmax = NULL
-# amp =c(1/90,1/90)
-# freq = NULL
-# threshold = NULL
-# plot = TRUE
-# title = TRUE
-# xlab = "Frequency (kHz)"
-# ylab = "Amplitude"
-# labels = TRUE
-# legend = TRUE
-# collab = "red" 
-
-
-
+# slight modification of the fpeak function from the "seewave" package.
 fpeaksFlat<-function (spec, f = NULL, nmax = NULL, amp = NULL, freq = NULL, 
     threshold = NULL, plot = TRUE, title = TRUE, xlab = "Frequency (kHz)", 
     ylab = "Amplitude", labels = TRUE, legend = TRUE, collab = "red", 
