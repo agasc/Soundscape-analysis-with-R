@@ -84,24 +84,38 @@ This function will return a list of two tables. The first table called "Mono_lef
 
 #### on one file
 library(soundecology)
+
 data(tropicalsound)
 
 Result<-AcouIndexAlpha(tropicalsound, stereo=FALSE, min_freq = 2000, max_freq = 10000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, bio_max=12000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, ADI=TRUE, NP=TRUE)
 
 Result_left<-Result$Mono_left
+
 Result_left
 
 #### on several files. Let's imagine you have a directory "Dir1" with several wave files.
 setwd("Dir1")
+
 WaveNames<-dir()
 
 TableTotal<-NULL
+
 for i in 1: length(WaveNames))
+
 {
+
 wave<-readWave(WaveNames[i])
-Result<-AcouIndexAlpha(wave, stereo=FALSE, min_freq = 2000, max_freq = 10000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, bio_max=12000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, ADI=TRUE, NP=TRUE)
+
+Result<-AcouIndexAlpha(wave, stereo=FALSE, min_freq = 2000, max_freq = 10000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, 
+
+bio_max=12000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, 
+
+ADI=TRUE, NP=TRUE)
+
 TableTotal<-rbind(TableTotal,Result$Mono_left)
+
 }
+
 rownames(TableTotal)<-WaveNames
 
 TableTotal
