@@ -93,14 +93,14 @@ Result_left<-Result$Mono_left
 
 Result_left
 
-#### on several files. Let's imagine you have a directory "Dir1" with several wave files.
+#### on several files. Let's imagine you have a directory "Dir1" with several wave files (only wave files!).
 setwd("Dir1")
 
 WaveNames<-dir()
 
 TableTotal<-NULL
 
-for i in 1: length(WaveNames))
+for (i in 1: length(WaveNames))
 
 {
 
