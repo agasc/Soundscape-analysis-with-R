@@ -209,7 +209,7 @@ f<-wave@samp.rate
 nyquist_freq <- f/2
 
 left <- channel(wave, which = c("left"))
-spec_left <- spectro(left, f = samplingrate, wl = wl, plot = FALSE, dB = "max0")$amp
+spec_left <- spectro(left, f = f, wl = wl, plot = FALSE, dB = "max0")$amp
 specA_left <- apply(spec_left, 1, meandB)
 rows_width = length(specA_left) / nyquist_freq
 min_row = round(min_freq * rows_width)
@@ -222,7 +222,7 @@ spec_L<-cbind(freqs,specA_left_segment_normalized)
 if(wave@stereo==TRUE)
 	{
 	right<- channel(wave, which = c("right"))
-	spec_right <- spectro(right, f = samplingrate, wl = wl, plot = FALSE, dB = "max0")$amp
+	spec_right <- spectro(right, f = f, wl = wl, plot = FALSE, dB = "max0")$amp
 	specA_right <- apply(spec_left, 1, meandB)
 	specA_right_segment <- specA_right[min_row:max_row]
 	specA_right_segment_normalized<-(specA_right_segment-min(specA_right_segment))/max(specA_right_segment-min(specA_right_segment))
@@ -236,7 +236,7 @@ Table_right<-NULL
 #Accupancy_index ref???. This index has been proposed by Bryan Pijanowski but have never been published.
 if(AcouOccupancy==TRUE)
 	{
-	Spectrogram_Aleft<-spectro(left, f = samplingrate, wl = wl, plot = FALSE, dB = "A")$amp
+	Spectrogram_Aleft<-spectro(left, f = f, wl = wl, plot = FALSE, dB = "A")$amp
 	Spectrogram_Aleft_segment <- Spectrogram_Aleft[min_row:max_row, ]
 	vec_left<-NULL
 	for (i in 1:ncol(Spectrogram_Aleft_segment))
@@ -248,7 +248,7 @@ if(AcouOccupancy==TRUE)
 		
 	if(wave@stereo==TRUE)
 	{
-	Spectrogram_Aright<-spectro(right, f = samplingrate, wl = wl, plot = FALSE, dB = "A")$amp
+	Spectrogram_Aright<-spectro(right, f = f, wl = wl, plot = FALSE, dB = "A")$amp
 	Spectrogram_Aright_segment <- Spectrogram_Aright[min_row:max_row, ]
 	vec_right<-NULL
 	for (i in 1:ncol(Spectrogram_Aright_segment))
@@ -465,8 +465,7 @@ if(NP==TRUE)
 			res2_left<-fpeaksFlat(spec_L,amp=amp,freq=freq,plot=plotpic,f)
 			npic_left<-nrow(res2_left)
 			}else{
-			res2_left<-fpeaksFlat(spec_left,plot=plotpic,f)
-			npic_left<-nrow(res2_left)
+			npic_left<-1
 			}
 		}else{
 		npic_left<-0
@@ -485,8 +484,7 @@ if(NP==TRUE)
 			res2_right<-fpeaksFlat(spec_R,amp=amp,freq=freq,plot=plotpic,f)
 			npic_right<-nrow(res2_right)
 			}else{
-			res2_right<-fpeaksFlat(spec_right,plot=plotpic,f)
-			npic_right<-nrow(res2_right)
+			npic_right<-1
 			}
 		}else{
 		npic_right<-0
