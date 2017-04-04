@@ -6,72 +6,72 @@
 AcouIndexAlpha(wave, stereo=FALSE, min_freq = 2000, max_freq = 22000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, bio_max=12000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, ADI=TRUE, NP=TRUE)
 
 
-####This code will compute several acoustic diversity indices on a single wav file. This wav file can be stereo or mono. This function calls the packages "seewave" (Sueur et al. 2008a), "tuneR" (Ligges et al. 2016) and, "soundecology" (Villanueava-Rivera and Pijanowski 2016)
+#### This code will compute several acoustic diversity indices on a single wav file. This wav file can be stereo or mono. This function calls the packages "seewave" (Sueur et al. 2008a), "tuneR" (Ligges et al. 2016) and, "soundecology" (Villanueava-Rivera and Pijanowski 2016)
 
-###Arguments
+### Arguments
 
-####wave 
+#### wave 
 a R wave object (see the function "readWave" in the "tuneR" package)
 
-####stereo 
+#### stereo 
 if "FALSE" the function will consider only the left channel of a stereo wave file or the only channel of a mono wave file.
 If "TRUE" the function will calculate the indices on both channels of a stereo wave file separately. Set as "FALSE" by default.
 
-####min_freq
+#### min_freq
 minimum frequency in hz. Set by default at 2000 Hz.
 
-####max_freq
+#### max_freq
 maximum frequency in hz. Set by default at 22000 Hz.
 
-####anthro_min  
+#### anthro_min  
 minimum frequency of anthrophony used to calculate the Normalized Difference Soundscape Index (NDSI) from Kasten et al. (2012). Set by default at 1000 Hz 
 
-####anthro_max  
+#### anthro_max  
 maximum frequency of anthrophony used only to calculate the Normalized Difference Soundscape Index (NDSI) from Kasten, et al. (2012). Set by default at 2000 Hz
 
-####bio_min  
+#### bio_min  
 minimum frequency of biophony used only to calculate the Normalized Difference Soundscape Index (NDSI) from Kasten, et al. (2012). Set by default at 2000 Hz
 
-####bio_max  
+#### bio_max  
 maximum frequency of biophony used only to calculate the Normalized Difference Soundscape Index (NDSI) from Kasten, et al. (2012). Set by default at 12000 Hz 
 
-####wl  
+#### wl  
 window length for the spectrogram analysis (even number of points). Set by default at 512 samples 
 
-####j
+#### j
 temporal steps used only for the Acoustic Complexity Index (ACI) calculation from Pieretti et al. (2102). Set by default at 5 seconds
 
-####AcouOccupancy
+#### AcouOccupancy
 if TRUE, will calculate the acoustic occupancy index. This index calculate the number of temporal sample in the spectrogram above a threshold of 50 DBA 
 
-####Bioac
+#### Bioac
 if TRUE, will calculate Bioacoustic index (Boelman et al. 2007) by calling the bioacoustic_index function from the soundecology package.
 
-####Hf
+#### Hf
 if TRUE, will calculate the frequency Entropy (Hf; Sueur et al. 2008b) by calling the "sh" function from the "seewave" package.
 
-####Ht
+#### Ht
 if TRUE, will calculate the temporal Entropy (Ht; Sueur et al. 2008b) by calling the "env" function from the "seewave" package.
 
-####H
+#### H
 if TRUE, will calculate the Entropy index (H; Sueur et al. 2008b) by calling the "sh" and "env" function from the "seewave" package.
 
-####ACI
+#### ACI
 if TRUE, will calculate the Acoustic Complexity Index (ACI; Pieretti et al. 2011) by calling the "acoustic_complexity" function from the "soundecology" package.,
 
-####AEI_villa
+#### AEI_villa
 if TRUE, will calculate the Acoustic Eveness index (AEI; Villanueva-Rivera et al. 2011) by calling the "acoustic_evenness" function from the package "soundecology"
 
-####M
+#### M
 if TRUE, will calculate the Median of amplitude enveloppe (M; Depraetere et al. 2012) by calling the function "env" from the "seewave" package
 
-####NDSI
+#### NDSI
 if TRUE, will calculate the Normalised Difference Soundscape Index (NDSI; Kasten et al. 2012) by calling the function "ndsi" from the "soundecology" package
 
-####ADI
+#### ADI
 if TRUE, will calculate the Acoustic diversity index (ADI in Pekin et al. 2013 or H' in Villanueva-Riviera et al. 2011) by calling the function "acoustic_diversity" in the "soundecology" package
 
-####NP
+#### NP
 if TRUE, will calculate the Number of frequency Peaks (NP; Gasc et al. 2013) by calling the function "fpeaks" in the "seewave" package
 
 ### Details
