@@ -87,7 +87,7 @@ library(soundecology)
 
 data(tropicalsound)
 
-Result<-AcouIndexAlpha(tropicalsound, stereo=FALSE, min_freq = 2000, max_freq = 10000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, bio_max=12000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, ADI=TRUE, NP=TRUE)
+Result<-AcouIndexAlpha(tropicalsound, stereo=FALSE, min_freq = 2000, max_freq = 10000, anthro_min = 1000, anthro_max = 2000, bio_min=2000, bio_max=10000, wl=512, j=5, AcouOccupancy=TRUE, Bioac=TRUE, Hf=TRUE, Ht=TRUE, H=TRUE, ACI=TRUE, AEI_villa=TRUE, M=TRUE, NDSI=TRUE, ADI=TRUE, NP=TRUE)
 
 Result_left<-Result$Mono_left
 
