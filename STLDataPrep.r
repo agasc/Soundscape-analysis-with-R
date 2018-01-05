@@ -36,7 +36,7 @@
 # STLy_Month<-c("03","04","05","06","07","08","09","10","11")
 
 
-# STLDataPrepFromPumilio(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
+# STLDataPrep(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
 
 #-# Example 2: STLd
  # #pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
@@ -50,7 +50,7 @@
  # STLd_Ndays=3
  # STLd_Hours=c("00","01","02","03","04")
 
-# STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+# STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
 
 
 
@@ -69,7 +69,7 @@
  # STLd_Ndays=3
  # STLd_Hours=c("00","01","02","03","04")
 
-# STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+# STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
 
 
 
@@ -79,7 +79,7 @@
 
 
 
-STL_DataPrepFromPumilio<-function(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile,STL_type,STLy_Hour,STLy_Nfiles,STLy_Month=NULL,STLd_Month,STLd_Ndays,STLd_Hours=NULL,FactorQuality=NULL)
+STLDataPrep<-function(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile,STL_type,STLy_Hour,STLy_Nfiles,STLy_Month=NULL,STLd_Month,STLd_Ndays,STLd_Hours=NULL,FactorQuality=NULL)
 {
 
 #load the packages

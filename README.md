@@ -145,9 +145,9 @@ Villanueva-Rivera, L. J., B. C. Pijanowski, J. Doucette, and B. Pekin. 2011. A p
 
 
 
-## STL_prep.r
+## STLDataPrep.r
 
-STLprep(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile,STL_type,STLy_Hour,STLy_Nfiles,STLy_Month=NULL,STLd_Month,STLd_Ndays,STLd_Hours=NULL,FactorQuality=NULL)
+STLDataPrep(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile,STL_type,STLy_Hour,STLy_Nfiles,STLy_Month=NULL,STLd_Month,STLd_Ndays,STLd_Hours=NULL,FactorQuality=NULL)
 
 
 #### The software Sonic Time Lapse Builder have been developped by Benjamin Gottesman and Mark Durham. It is creating a Audio file by concatainating several .wav files.To use Sonic Time Lapse Builder program, you will need to drag a directory containing .these files. This code will help you to prepare this directory from the Pumilio Database (see Villanueva-Rivera and Pijanowski 2012) in order to have clean time series of files for a seasonality (along month, by default it will consider all the months) or daily variation (along hour of the day, by default it will consider all hours). Author Amandine Gasc, 20160921.
@@ -199,18 +199,18 @@ Vector of  TRUE/FALSE follwing the filenames of the recordings to consider; For 
 ###Exmaple (not working for everyone, only to consult for argument formatting)
 
 #### Example 1: STLy
- pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
- Colname="Arizona 2013"
- SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
- pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
- Directory<-"C:/Users/gamandin/Desktop/DayJune_wind"
- DurationFile<-10
- STL_type = "STLy" 		
- STLy_Hour = "06"			
- STLy_Nfiles = 5 			
- STLy_Month<-c("03","04","05","06","07","08","09","10","11")
+pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+Colname="Arizona 2013"
+SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+Directory<-"C:/Users/gamandin/Desktop/DayJune_wind"
+DurationFile<-10
+STL_type = "STLy" 		
+STLy_Hour = "06"			
+STLy_Nfiles = 5 			
+STLy_Month<-c("03","04","05","06","07","08","09","10","11")
 
- STLDataPrepFromPumilio(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
+STLDataPrep(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
 
 #### Example 2: STLd
 pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
@@ -224,7 +224,7 @@ STLd_Month="06"
 STLd_Ndays=3
 STLd_Hours=c("00","01","02","03","04")
 
-STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
 
 
 #### Example 3: STLd
@@ -240,9 +240,46 @@ STLd_Ndays=3
 STLd_Hours=c("00","01","02","03","04")
 FactorQuality<-ListInd_subWind_reorg[[1]][,1]
 
-STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
 
 ### References
 
 Villanueva-Rivera, L. J., & Pijanowski, B. C. (2012). Pumilio: A Web-Based Management System for Ecological Recordings. Bulletin of the Ecological Society of America, 93(1), 71–81. https://doi.org/10.1890/0012-9623-93.1.71
+
+
+
+
+##STLDataPrepAverage
+
+#### The software Sonic Time Lapse Builder have been developped by Benjamin Gottesman and Mark Durham. It is creating a Audio file by concatainating several .wav files. 
+To use Sonic Time Lapse Builder program, you will need to drag a directory containing .these files. 
+However, sometimes you will need to avergae the information from several sites. For example you might be interested in the Factor "Habitat" and have four sites in a forest and four sites in a prairie and you final goal is to produce one average time lapse for the forest habitat and one for the prairie.
+A code  ("STLDataPrep.r") will help you to prepapre data from the Pumilio Database in order to have clean time series of files for a seasonality (along month, by default it will consider all the months) or daily variation (along hour of the day, by default it will consider all hours).
+This code will help you to average theses along different subdirectory based on a factor (can be among days of a site or among site of a factor) 
+Author Amandine Gasc, 20160921.
+
+### Arguments
+
+##### DirectoryFrom
+character, directory path of the results from the function STL_DataPrepFromPumilio. Need to be one more directory level in it and the same number of files in each of these subdirectories.
+
+#### DirectoryTo 
+character, directory path of the results you will obtained
+
+#### TableFactorAveraged
+a table of two columns, the first one is the directory name and the second one is the factor associated to it.
+
+###Example (not working for everyone, only to consult for argument formatting)
+
+#### If you want to obtain a daily variation from different days of a same site
+ DirectoryFrom="C:/Users/gamandin/Desktop/DayJune/H1-NO-R2"#res from the function STL_DataPrepFromPumilio. Should be a directory with directories inside corresponding to the sites
+ DirectoryTo="C:/Users/gamandin/Desktop/DayJuneAveraged/H1-NO-R2" # a new dorectory to save the averaged files 
+ TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/DayJune/H1-NO-R2"),Factor=c("201406","201406","201406","201406","201406"))
+ STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
+
+### Example for different sites based on a factor disturbance level
+ DirectoryFrom="C:/Users/gamandin/Desktop/YearSTL"#res from the function STL_DataPrepFromPumilio. Should be a directory with directories inside corresponding to the sites
+ DirectoryTo="C:/Users/gamandin/Desktop/YearSTL_averaged" # a new dorectory to save the averaged files 
+ TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/YearSTL"),Factor=c("H1-HI","H1-HI","H1-HI","H1-NO","H1-NO","H1-NO","H2-HI","H2-HI","H2-HI","H2-NO","H2-NO","H2-NO","H3-ME","H3-ME","H3-ME","H3-NO","H3-NO","H3-NO","H4-HI","H4-HI","H4-HI","H4-NO","H4-NO","H4-NO")) # This table of two columns, the first one are the directory/sites names, the second column report the factor to consider, here the type of habitat
+ STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
 
