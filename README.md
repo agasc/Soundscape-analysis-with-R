@@ -1,4 +1,4 @@
-# Soundscape-analysis-with-R
+﻿# Soundscape-analysis-with-R
 
 
 ## Acoustic diversity indices.r
@@ -142,4 +142,107 @@ Sueur, J., S. Pavoine, O. Hamerlynck, and S. Duvail (2008b). Rapid acoustic surv
 Villanueva-Rivera, L.J., and B.C. Pijanowski (2016). soundecology: Soundscape Ecology. R package version 1.3.2. https://CRAN.R-project.org/package=soundecology
 
 Villanueva-Rivera, L. J., B. C. Pijanowski, J. Doucette, and B. Pekin. 2011. A primer of acoustic analysis for landscape ecologists. Landscape Ecology 26: 1233-1246. doi: 10.1007/s10980-011-9636-9.
+
+
+
+## STL_prep.r
+
+STLprep(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile,STL_type,STLy_Hour,STLy_Nfiles,STLy_Month=NULL,STLd_Month,STLd_Ndays,STLd_Hours=NULL,FactorQuality=NULL)
+
+
+#### The software Sonic Time Lapse Builder have been developped by Benjamin Gottesman and Mark Durham. It is creating a Audio file by concatainating several .wav files.To use Sonic Time Lapse Builder program, you will need to drag a directory containing .these files. This code will help you to prepare this directory from the Pumilio Database (see Villanueva-Rivera and Pijanowski 2012) in order to have clean time series of files for a seasonality (along month, by default it will consider all the months) or daily variation (along hour of the day, by default it will consider all hours). Author Amandine Gasc, 20160921.
+
+### Arguments
+
+####pumilio_URL				
+Address of the pumilio database
+
+####Colname
+Character, the collection name in Pumilio example: "Arizona 2013"
+
+####SiteNames
+Vector of character, names of the sites in Pumilio: c("H1-HI-R1","H1-HI-R2") 
+
+####pathFlacFronten
+Character, the path where you have the flac2wav software see ?wac2wav
+
+####Directory
+Character, path of your temporary directory where you will have you files copied and transformed
+
+####DurationFile
+Interger, the Duration final of the file in seconds, if empty you will concerve the original duration 
+
+####STL_type
+Character, either "STLd" for Sonic Time Lapse daily or "STLy" for sonic timelapse yearly
+
+####STLy_Hour
+Character, representing ONE hours of the day, example: "00" for midnight, "09" for 9 a.m. or "22" for 10 p.m. 
+
+####STLy_Nfiles
+Integer, representing the number of files per month, equivalent of the number of days represented
+
+####STLy_Month==NULL
+Vector of character representing the month: example: c("01","02","03") for a time lapse containing the month pf January to March. if NULL it will consider all the month from January to December. 
+
+####STLd_Month
+Character, representing ONE Month of the year, example: "01" for January or "10" for October
+
+####STLd_Ndays
+Integer, representing the number of days, one folder will be created with the 24 hours of these days randomly sampled.
+
+####STLd_Hours==NULL
+Vector of character representing the Hours: example: c("00","02","03") for a time lapse containing the Hours from midnight to 3 a.m. if NULL it will consider all the hours of the day. 
+
+####FactorQuality
+Vector of  TRUE/FALSE follwing the filenames of the recordings to consider; For example you have information about wind, rain and/or technical issue: so information about how to exclude sounds from the selection
+
+###Exmaple (not working for everyone, only to consult for argument formatting)
+
+#### Example 1: STLy
+ pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+ Colname="Arizona 2013"
+ SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+ pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+ Directory<-"C:/Users/gamandin/Desktop/DayJune_wind"
+ DurationFile<-10
+ STL_type = "STLy" 		
+ STLy_Hour = "06"			
+ STLy_Nfiles = 5 			
+ STLy_Month<-c("03","04","05","06","07","08","09","10","11")
+
+ STLDataPrepFromPumilio(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
+
+#### Example 2: STLd
+pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+Colname="Arizona 2013"
+SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+Directory<-"C:/Users/gamandin/Desktop/test"
+DurationFile<-10
+STL_type = "STLd" 		 
+STLd_Month="06"
+STLd_Ndays=3
+STLd_Hours=c("00","01","02","03","04")
+
+STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+
+
+#### Example 3: STLd
+pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+Colname="Arizona 2013"
+SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+Directory<-"C:/Users/gamandin/Desktop/test"
+DurationFile<-10
+STL_type = "STLd" 	
+STLd_Month="06"
+STLd_Ndays=3
+STLd_Hours=c("00","01","02","03","04")
+FactorQuality<-ListInd_subWind_reorg[[1]][,1]
+
+STL_DataPrepFromPumilio(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
+
+### References
+
+Villanueva-Rivera, L. J., & Pijanowski, B. C. (2012). Pumilio: A Web-Based Management System for Ecological Recordings. Bulletin of the Ecological Society of America, 93(1), 71–81. https://doi.org/10.1890/0012-9623-93.1.71
 
