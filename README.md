@@ -154,90 +154,121 @@ STLDataPrep(pumilio_URL,Colname,SiteNames,pathFlacFronten,Directory,DurationFile
 
 ### Arguments
 
-####pumilio_URL				
+#### pumilio_URL				
 Address of the pumilio database
 
-####Colname
+#### Colname
 Character, the collection name in Pumilio example: "Arizona 2013"
 
-####SiteNames
+#### SiteNames
 Vector of character, names of the sites in Pumilio: c("H1-HI-R1","H1-HI-R2") 
 
-####pathFlacFronten
+#### pathFlacFronten
 Character, the path where you have the flac2wav software see ?wac2wav
 
-####Directory
+#### Directory
 Character, path of your temporary directory where you will have you files copied and transformed
 
-####DurationFile
+#### DurationFile
 Interger, the Duration final of the file in seconds, if empty you will concerve the original duration 
 
-####STL_type
+#### STL_type
 Character, either "STLd" for Sonic Time Lapse daily or "STLy" for sonic timelapse yearly
 
-####STLy_Hour
+#### STLy_Hour
 Character, representing ONE hours of the day, example: "00" for midnight, "09" for 9 a.m. or "22" for 10 p.m. 
 
-####STLy_Nfiles
+#### STLy_Nfiles
 Integer, representing the number of files per month, equivalent of the number of days represented
 
-####STLy_Month==NULL
+#### STLy_Month==NULL
 Vector of character representing the month: example: c("01","02","03") for a time lapse containing the month pf January to March. if NULL it will consider all the month from January to December. 
 
-####STLd_Month
+#### STLd_Month
 Character, representing ONE Month of the year, example: "01" for January or "10" for October
 
-####STLd_Ndays
+#### STLd_Ndays
 Integer, representing the number of days, one folder will be created with the 24 hours of these days randomly sampled.
 
-####STLd_Hours==NULL
+#### STLd_Hours==NULL
 Vector of character representing the Hours: example: c("00","02","03") for a time lapse containing the Hours from midnight to 3 a.m. if NULL it will consider all the hours of the day. 
 
-####FactorQuality
+#### FactorQuality
 Vector of  TRUE/FALSE follwing the filenames of the recordings to consider; For example you have information about wind, rain and/or technical issue: so information about how to exclude sounds from the selection
 
-###Exmaple (not working for everyone, only to consult for argument formatting)
+### Example (not working for everyone, only to consult for argument formatting)
 
 #### Example 1: STLy
+
 pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+
 Colname="Arizona 2013"
-SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+
+SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-
+NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+
 pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+
 Directory<-"C:/Users/gamandin/Desktop/DayJune_wind"
+
 DurationFile<-10
+
 STL_type = "STLy" 		
+
 STLy_Hour = "06"			
+
 STLy_Nfiles = 5 			
+
 STLy_Month<-c("03","04","05","06","07","08","09","10","11")
 
 STLDataPrep(pumilio_URL=pumilio_URL, Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLy_Hour=STLy_Hour,STLy_Nfiles=STLy_Nfiles,STLy_Month=STLy_Month)
 
 #### Example 2: STLd
+
 pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+
 Colname="Arizona 2013"
+
 SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
+
 pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+
 Directory<-"C:/Users/gamandin/Desktop/test"
+
 DurationFile<-10
+
 STL_type = "STLd" 		 
+
 STLd_Month="06"
+
 STLd_Ndays=3
+
 STLd_Hours=c("00","01","02","03","04")
 
 STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
 
 
 #### Example 3: STLd
+
 pumilio_URL="http://soundscape01.rcac.purdue.edu/pumilio/"
+
 Colname="Arizona 2013"
+
 SiteNames<-c("H1-HI-R1","H1-HI-R2", "H1-HI-R3", "H1-NO-R1", "H1-NO-R2", "H1-NO-R3", "H2-HI-R1", "H2-HI-R2", "H2-HI-R3", "H2-NO-R1", "H2-NO-R2", "H2-NO-R3", "H3-LO-R1", "H3-LO-R2", "H3-LO-R3", "H3-ME-R1", "H3-ME-R2", "H3-ME-R3", "H3-NO-R1", "H3-NO-R2", "H3-NO-R3", "H4-HI-R1", "H4-HI-R2", "H4-HI-R3", "H4-NO-R1", "H4-NO-R2",  "H4-NO-R3") # Set the sites names
 pathFlacFronten<-"C:/Program Files (x86)/FLAC Frontend/tools"
+
 Directory<-"C:/Users/gamandin/Desktop/test"
+
 DurationFile<-10
+
 STL_type = "STLd" 	
+
 STLd_Month="06"
+
 STLd_Ndays=3
+
 STLd_Hours=c("00","01","02","03","04")
+
 FactorQuality<-ListInd_subWind_reorg[[1]][,1]
 
 STLDataPrep(pumilio_URL=pumilio_URL,Colname=Colname,SiteNames=SiteNames,pathFlacFronten=pathFlacFronten,Directory=Directory,DurationFile=DurationFile,STL_type=STL_type,STLd_Month=STLd_Month,STLd_Ndays=STLd_Ndays,STLd_Hours=STLd_Hours)
@@ -249,7 +280,7 @@ Villanueva-Rivera, L. J., & Pijanowski, B. C. (2012). Pumilio: A Web-Based Manag
 
 
 
-##STLDataPrepAverage
+## STLDataPrepAverage
 
 #### The software Sonic Time Lapse Builder have been developped by Benjamin Gottesman and Mark Durham. It is creating a Audio file by concatainating several .wav files. 
 To use Sonic Time Lapse Builder program, you will need to drag a directory containing .these files. 
@@ -269,17 +300,24 @@ character, directory path of the results you will obtained
 #### TableFactorAveraged
 a table of two columns, the first one is the directory name and the second one is the factor associated to it.
 
-###Example (not working for everyone, only to consult for argument formatting)
+### Example (not working for everyone, only to consult for argument formatting)
 
 #### If you want to obtain a daily variation from different days of a same site
- DirectoryFrom="C:/Users/gamandin/Desktop/DayJune/H1-NO-R2"#res from the function STL_DataPrepFromPumilio. Should be a directory with directories inside corresponding to the sites
- DirectoryTo="C:/Users/gamandin/Desktop/DayJuneAveraged/H1-NO-R2" # a new dorectory to save the averaged files 
+
+DirectoryFrom="C:/Users/gamandin/Desktop/DayJune/H1-NO-R2"
+
+DirectoryTo="C:/Users/gamandin/Desktop/DayJuneAveraged/H1-NO-R2" 
  TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/DayJune/H1-NO-R2"),Factor=c("201406","201406","201406","201406","201406"))
- STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
+
+STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
 
 ### Example for different sites based on a factor disturbance level
- DirectoryFrom="C:/Users/gamandin/Desktop/YearSTL"#res from the function STL_DataPrepFromPumilio. Should be a directory with directories inside corresponding to the sites
- DirectoryTo="C:/Users/gamandin/Desktop/YearSTL_averaged" # a new dorectory to save the averaged files 
- TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/YearSTL"),Factor=c("H1-HI","H1-HI","H1-HI","H1-NO","H1-NO","H1-NO","H2-HI","H2-HI","H2-HI","H2-NO","H2-NO","H2-NO","H3-ME","H3-ME","H3-ME","H3-NO","H3-NO","H3-NO","H4-HI","H4-HI","H4-HI","H4-NO","H4-NO","H4-NO")) # This table of two columns, the first one are the directory/sites names, the second column report the factor to consider, here the type of habitat
- STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
+
+DirectoryFrom="C:/Users/gamandin/Desktop/YearSTL"
+
+DirectoryTo="C:/Users/gamandin/Desktop/YearSTL_averaged" 
+
+TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/YearSTL"),Factor=c("H1-HI","H1-HI","H1-HI","H1-NO","H1-NO","H1-NO","H2-HI","H2-HI","H2-HI","H2-NO","H2-NO","H2-NO","H3-ME","H3-ME","H3-ME","H3-NO","H3-NO","H3-NO","H4-HI","H4-HI","H4-HI","H4-NO","H4-NO","H4-NO")) 
+
+STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
 
