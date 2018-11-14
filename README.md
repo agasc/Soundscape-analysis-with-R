@@ -326,8 +326,9 @@ STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFact
 
 ## DistAverage
 
-#### DistAverage<-function(mat,factor_Site,factor_Day,factor_Hour,FactorToAverage,RemoveNA=TRUE)
-The DistAverage function (Gasc et al. PLoS ONE 2013) has been developed in order to manipulate large distance matrices produced by the calculation of Beta acoustic indices such as Df (Df in Sueur et al, PLoS ONE 2008). 
+DistAverage<-function(mat,factor_Site,factor_Day,factor_Hour,FactorToAverage,RemoveNA=TRUE)
+
+#### The DistAverage function (Gasc et al. PLoS ONE 2013) has been developed in order to manipulate large distance matrices produced by the calculation of Beta acoustic indices such as Df (Df in Sueur et al, PLoS ONE 2008). 
 The function will calculate averaged matrices from an original pair-wise matrix by averaging on the "hour" (average similar hours), on the "sites" (average similar Sites) or on the days (average similar days).
 This function was first used in the Scientific paper that can be cited as reference: Gasc, A., Sueur, J., Pavoine, S., Pellens, R., & Grandcolas, P. (2013). Biodiversity Sampling Using a Global Acoustic Approach: Contrasting Sites with Microendemics in New Caledonia. PLoS ONE, 8(5), e65311. https://doi.org/10.1371/journal.pone.0065311
 
