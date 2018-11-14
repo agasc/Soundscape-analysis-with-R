@@ -321,3 +321,56 @@ TableFactorAveraged=cbind(Sites=dir("C:/Users/gamandin/Desktop/YearSTL"),Factor=
 
 STLDataPrepAverage(DirectoryFrom=DirectoryFrom,DirectoryTo=DirectoryTo,TableFactorAveraged=TableFactorAveraged)
 
+
+
+
+## DistAverage
+
+#### The DistAverage function has been developed in order to manipulate large distance matrices produced by the calculation of Beta acoustic indices such as Df (Sueur et al, PLoS ONE 2008). 
+The function will calculate averaged matrices from an original pair-wise matrix by averaging on the "hour" (average similar hours), on the "sites" (average similar Sites) or on the days (average similar days).
+This fucntion was first used in the Scientific paper that can be cited as reference: Gasc, A., Sueur, J., Pavoine, S., Pellens, R., & Grandcolas, P. (2013). Biodiversity Sampling Using a Global Acoustic Approach: Contrasting Sites with Microendemics in New Caledonia. PLoS ONE, 8(5), e65311. https://doi.org/10.1371/journal.pone.0065311
+
+### Argument
+
+##### mat
+ mat is of class matrix and need to be an euclidean distance matrix. 
+ To check if this distance is euclidean you can type: is.euclidean(as.dist(mat)). In case of non euclidean distance, a transformation is possible such as: is.euclidean(lingoess(as.dist(mat)))
+
+##### factor_Site 
+factor_Site need to be a vector of the length of the column or row of the matrix
+
+##### factor_Day
+factor_Day need to be a vector of the length of the column or row of the matrix
+
+##### factor_Hour
+factor_Hour need to be a vector of the length of the column or row of the matrix
+
+##### FactorToAverage
+FactorToAverage is a character that can be "factor_Site", "factor_Day" or "factor_Hour"
+
+##### RemoveNA
+# RemoveNA can be "TRUE" or "FALSE", in case it is TRUE and if there are some NA in the final averaged matrix, a function will remove the NA value by a step by step method in order to remove the less data possible.
+
+
+DistAverage<-function(mat,factor_Site,factor_Day,factor_Hour,FactorToAverage,RemoveNA=TRUE)
+
+### Example without NA
+ vec<-sample(seq(from=0.11,to=0.99,by=0.01), 36*36, replace = TRUE, prob = NULL)
+ mat<-as.matrix(as.dist(matrix(vec, 36, 36)))
+ colnames(mat)<-rownames(mat)<-c(paste(rep("site1",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"),
+ paste(rep("site2",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"),
+ paste(rep("site3",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"))
+
+ MatrixAveraged<-DistAverage(mat=mat,factor_Site=substr(colnames(mat),1,5),factor_Day=substr(colnames(mat),7,10),factor_Hour=substr(colnames(mat),12,13),FactorToAverage="factor_Hour",RemoveNA=TRUE)
+
+
+### Example with NA
+ vec<-sample(seq(from=0.11,to=0.99,by=0.01), 36*36, replace = TRUE, prob = NULL)
+ vec[c(5:145,1200:1250)]<-NA
+ mat<-as.matrix(as.dist(matrix(vec, 36, 36)))
+ colnames(mat)<-rownames(mat)<-c(paste(rep("site1",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"),
+ paste(rep("site2",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"),
+ paste(rep("site3",12),c(rep("day1",4),rep("day2",4),rep("day3",4)),c("h1","h2","h3","h4"),sep="_"))
+ 
+ MatrixAveraged<-DistAverage(mat=mat,factor_Site=substr(colnames(mat),1,5),factor_Day=substr(colnames(mat),7,10),factor_Hour=substr(colnames(mat),12,13),FactorToAverage="factor_Hour",RemoveNA=TRUE)
+
