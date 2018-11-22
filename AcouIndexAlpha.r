@@ -364,7 +364,7 @@ if(H==TRUE)
 # Issue with the j with short sound# maybe by default =1 ???
 if(ACI==TRUE)
 	{
-	ACI_measure<-acoustic_complexity(wave,max_freq = max_freq, j = j, fft_w = wl)
+	ACI_measure<-acoustic_complexity(wave,min_freq = min_freq, max_freq = max_freq, j = j, fft_w = wl)
 	ACI_left<-ACI_measure$AciTotAll_left
 	Table_left<-cbind(Table_left,ACI_left)
 	if(wave@stereo==TRUE)
