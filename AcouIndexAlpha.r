@@ -415,7 +415,7 @@ if(M==TRUE)
 # Normalised difference soundscape index - NDSI (Kasten et al. 2012)
 if(NDSI==TRUE)
 {
-NDSI_measure<-ndsi(wave, fft_w = wl, anthro_min = 1000, anthro_max = 2000,bio_min = bio_min, bio_max = bio_max)
+NDSI_measure<-ndsi(wave, fft_w = wl, anthro_min = anthro_min, anthro_max = anthro_max,bio_min = bio_min, bio_max = bio_max)
 NDSI_left<-NDSI_measure$ndsi_left
 #NDSI_seewave<-NDSI(soundscapespec(wave))
 Table_left<-cbind(Table_left,NDSI_left)
